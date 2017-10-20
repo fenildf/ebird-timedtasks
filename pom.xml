@@ -71,7 +71,7 @@
 	
   </dependencies>
   <build>
-    <finalName>web-demo</finalName>
+    <finalName>ebird-timedTasks</finalName>
     <plugins>
         <!--引入JDK 版本插件 -->
 	    <plugin>
