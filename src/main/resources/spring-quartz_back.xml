@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans.xsd  
+           http://www.springframework.org/schema/context  
+           http://www.springframework.org/schema/context/spring-context.xsd  
+           http://www.springframework.org/schema/aop  
+           http://www.springframework.org/schema/aop/spring-aop.xsd  
+           http://www.springframework.org/schema/tx   
+           http://www.springframework.org/schema/tx/spring-tx.xsd  
+           http://www.springframework.org/schema/mvc   
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
+    
+    <!-- 要执行任务的任务类。 -->
+    <bean id="pointSkilled_Job" class="com.ebird.timedtasks.job.PointSkilled_Job"></bean>
+    
+    
+    <!-- 将需要执行的定时任务注入JOB中。【周期  一】 -->
+    <bean id="jobtask1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_1"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+    <!-- 将需要执行的定时任务注入JOB中。【周期  二】 -->
+    <bean id="jobtask2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_1"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+    <!-- 将需要执行的定时任务注入JOB中。【周期  三】 -->
+    <bean id="jobtask3" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_3"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+        <!-- 将需要执行的定时任务注入JOB中。【周期 四】 -->
+    <bean id="jobtask4" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_4"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+        <!-- 将需要执行的定时任务注入JOB中。【周期 五】 -->
+    <bean id="jobtask5" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_5"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+        <!-- 将需要执行的定时任务注入JOB中。【周期  六】 -->
+    <bean id="jobtask6" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_6"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+    
+    <!-- 将需要执行的定时任务注入JOB中。【周期 七】 -->
+    <bean id="jobtask7" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_7"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+        <!-- 将需要执行的定时任务注入JOB中。【周期 八】 -->
+    <bean id="jobtask8" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_8"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+        <!-- 将需要执行的定时任务注入JOB中。【周期 九】 -->
+    <bean id="jobtask9" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_9"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+    <!-- 定时任务执行时间 -->    
+	<bean id="cronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask1" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	<bean id="cronTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask2" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean>
+	<bean id="cronTrigger3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask3" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	<bean id="cronTrigger4" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask4" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean>
+	<bean id="cronTrigger5" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask5" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	<bean id="cronTrigger6" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask6" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean>
+	<bean id="cronTrigger7" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask7" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	<bean id="cronTrigger8" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask8" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	<bean id="cronTrigger9" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask9" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean>
+	
+<!--  	<bean id="customJobFactory" class="com.ebird.timedtasks.job.CustomJobFactory"></bean> 
+ 	
+ 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="jobFactory" ref="customJobFactory"></property>  
+    </bean> -->
+	
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->  
+    <bean id="startQuertz" lazy-init="false" autowire="no"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- <property name="jobFactory" ref="customJobFactory"></property>    --> 
+        <property name="triggers">  
+            <list>  
+                <!-- 触发器列表    -->  
+                <ref bean="cronTrigger1" />  
+                <ref bean="cronTrigger2" />
+                <ref bean="cronTrigger3" />
+                <ref bean="cronTrigger4" />
+                <ref bean="cronTrigger5" />
+                <ref bean="cronTrigger6" />
+                <ref bean="cronTrigger7" />
+                <ref bean="cronTrigger8" />
+                <ref bean="cronTrigger9" />
+            </list>  
+        </property>  
+    </bean>
+    
+</beans>
+
+
+
+
+

@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.smartframe</groupId>
+  <artifactId>ebird-timedTasks</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>ebird-timedTasks(熟练度计算调度任务)</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.smartframe</groupId>
+	  <artifactId>basics</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+   	  <groupId>com.smartframe</groupId>
+	  <artifactId>dto</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+   
+    <dependency>
+      <groupId>com.ebird</groupId>
+	  <artifactId>ebird-entity</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
+		<!-- 数据源 -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.12</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.qiniu</groupId>
+	  <artifactId>qiniu-java-sdk</artifactId>
+	  <version>[7.2.0, 7.2.99]</version>
+	</dependency>
+	
+    <dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.11</version>
+		<scope>test</scope>
+	</dependency>
+	
+    <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context-support</artifactId>
+           <version>4.2.6.RELEASE</version>
+    </dependency>
+    
+    <!-- quartz定时任务 -->
+    <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.2.3</version>
+    </dependency>    
+	
+	<dependency>  
+           <groupId>org.springframework</groupId>  
+           <artifactId>spring-test</artifactId>  
+           <version> 3.2.4.RELEASE  </version>  
+           <scope>provided</scope>  
+	</dependency> 
+	
+  </dependencies>
+  <build>
+    <finalName>web-demo</finalName>
+    <plugins>
+        <!--引入JDK 版本插件 -->
+	    <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				<encoding>utf-8</encoding>
+			</configuration> 		   
+	    </plugin>
+	    <!--引入Jetty 启动插件 -->
+    	<plugin>
+			  <groupId>org.eclipse.jetty</groupId>
+			  <artifactId>jetty-maven-plugin</artifactId>
+			  <version>9.3.18.v20170406</version> 
+				<configuration>
+					 <defaultsDescriptor>src/test/java/jetty/jetty-config.xml</defaultsDescriptor>
+					<webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+				</configuration>
+			</plugin>
+    </plugins>
+  </build>
+</project>

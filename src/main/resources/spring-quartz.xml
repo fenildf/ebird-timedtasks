@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans.xsd  
+           http://www.springframework.org/schema/context  
+           http://www.springframework.org/schema/context/spring-context.xsd  
+           http://www.springframework.org/schema/aop  
+           http://www.springframework.org/schema/aop/spring-aop.xsd  
+           http://www.springframework.org/schema/tx   
+           http://www.springframework.org/schema/tx/spring-tx.xsd  
+           http://www.springframework.org/schema/mvc   
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
+    
+    <!-- 要执行任务的任务类。 -->
+    <bean id="pointSkilled_Job" class="com.ebird.timedtasks.job.PointSkilled_Job"></bean>
+    
+    <!-- 将需要执行的定时任务注入JOB中。【周期  一】 -->
+    <bean id="jobtask1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="pointSkilled_Job"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="work_1"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+    
+    <!-- 定时任务执行时间 -->    
+	<bean id="cronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="jobtask1" /> 
+		<property name="cronExpression" value="0 0/1 * * * ?" /><!--  每2秒调度一次  -->
+	</bean> 
+	
+<!-- <bean id="customJobFactory" class="com.ebird.timedtasks.job.CustomJobFactory"></bean> 
+ 	
+ 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="jobFactory" ref="customJobFactory"></property>  
+    </bean> -->
+	
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->  
+    <bean id="startQuertz" lazy-init="false" autowire="no"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">  
+            <list>  
+                <!-- 触发器列表    -->  
+                <ref bean="cronTrigger1" /> 
+            </list>  
+        </property>  
+    </bean>
+    
+</beans>
+
+
+
+
+
