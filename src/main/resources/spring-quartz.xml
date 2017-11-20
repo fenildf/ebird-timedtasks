@@ -29,7 +29,10 @@
     <!-- 定时任务执行时间 -->    
 	<bean id="cronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
 		<property name="jobDetail" ref="jobtask1" /> 
-		<property name="cronExpression" value="0 0 0/1 * * ?" /><!--  每隔1小时调度一次  -->
+		<!--  每隔1分钟调度一次  -->
+		<!-- <property name="cronExpression" value="0 0/1 * * * ?" /> -->
+		<!--  每隔1小时调度一次  -->
+		<property name="cronExpression" value="0 0 0/1 * * ?" />
 	</bean> 
 	
 <!-- <bean id="customJobFactory" class="com.ebird.timedtasks.job.CustomJobFactory"></bean> 
