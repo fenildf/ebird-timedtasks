@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.ebird.ebird_entity.PointExerciseDetailEntity;
+import com.ebird.timedtasks.entity.LorePointExerciseDetailEntity;
 
 @Repository
 public interface PointDetailDao {
@@ -16,16 +16,16 @@ public interface PointDetailDao {
 	 * @param exerciseCycle 练习周期
 	 * @return
 	 */
-	public List<PointExerciseDetailEntity> findPointExerciseDetail(@Param("exerciseCycle")Integer exerciseCycle);
+	public List<LorePointExerciseDetailEntity> findPointExerciseDetail(@Param("exerciseCycle")Integer exerciseCycle);
 	
 	
-	public List<PointExerciseDetailEntity> findPointExerciseDetailAll();
+	public List<LorePointExerciseDetailEntity> findPointExerciseDetailAll();
 	
 	
 	/**
 	 * 批量更新知识点练习熟练度
 	 * @param list
 	 */
-	public void updatePointExerciseDetail(@Param("entityList")List<PointExerciseDetailEntity> entityList);
+	public void updatePointExerciseDetail(@Param("entityList")List<LorePointExerciseDetailEntity> entityList);
 
 }
